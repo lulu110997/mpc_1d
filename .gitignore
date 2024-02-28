@@ -1,0 +1,48 @@
+# Media and result files
+*.jpg
+*.png
+*.mp4
+*.csv
+*.pdf
+
+# Artefacts, executables and libraries
+*.pyc
+*.so
+*.slo
+*.lo
+*.o
+*.obj
+*.gch
+*.pch
+*.dylib
+*.dll
+*.lai
+*.la
+*.a
+*.lib
+*.exe
+*.out
+*.app
+
+# Serialised data
+*.pkl
+*.pickle
+*.npy
+*.pt
+*.tflite
+*.h5
+
+# IDE settings
+*.vscode
+*.idea
+
+# Directories containing large files
+models/
+build/
+__pycache__/
+results/
+pickles/
+data/
+log/
+logs/
+bin/
