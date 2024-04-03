@@ -15,7 +15,7 @@ import sympy as sym
 # Plots
 SAVE_ANIMATION = False  # If you want to save an animation
 F_NAME = "static"  # Name of the gif animation
-SKIP_STEPS = 3  # Useful for skipping steps during simulation to increase speed
+SKIP_STEPS = 1  # Useful for skipping steps during simulation to increase speed
 
 # STATIC = False; START = 230; END = 500
 STATIC = True; START = 0; END = 500; STATIC_OBS_POS = (0.3, 0.1)  # 115 start and (0.3, 0.1) obs pos is default
@@ -234,7 +234,7 @@ def update(i):
     ax[1].scatter(i, apf_force_history[i, 0], marker='_', color='red')
     ax[1].scatter(i, apf_force_history[i, 1], marker='_', color='blue')
 
-    if not SAVE_ANIMATION and START < i < END :
+    if not SAVE_ANIMATION and START < i < END:
         # drawing updated values
         fig.canvas.draw()
         # This will run the GUI event loop until all UI events currently waiting have been processed

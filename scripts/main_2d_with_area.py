@@ -1,8 +1,15 @@
+from matplotlib import pyplot as plt
 """
 Compares CBF, APF and no OA in a situation where the obstacle is static and dynamic
 Does not take into account the area of the agents and obstacles (ie only point to point distance)
+
+Author: Louis Fernandez
+Contact: louis.f.fernandez@student.uts.edu.au
+Date: 2024-03-22
+Version: 1.0.0
+Credits: 
+    https://medium.com/@rymshasiddiqui/path-planning-using-potential-field-algorithm-a30ad12bdb08 for APF explanation
 """
-from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
 from roboticstoolbox.tools import trajectory as traj
 from spatialmath import SE3
@@ -33,11 +40,11 @@ KV = 1  # Velocity gain used when calculating velocity
 MAX_VEL = 1.5  # Maximum allowable velocity
 MIN_VEL = -1.5  # Minimum allowable velocity
 
-TIME = 1  # Desired time to complete the task?
+TIME = 1  # Desired time to complete the task
 
 # Radius of ee and obstacle
-R_OBS = 0.1
-R_EE = 0.1
+R_OBS = 0.05
+R_EE = 0.05
 
 ########################################################################################################################
 if not SAVE_ANIMATION:
@@ -132,7 +139,7 @@ def use_cbf(r, desired_pos, o):
     G = -dist_deriv(r, o, R_EE, R_OBS)  # CBF derivative
     h = np.array([CBF_GAMMA * dist_f(r, o, R_EE, R_OBS)])  # CBF exponential gamma*hx
 
-    vel = solve_ls(R, s, G, h, lb=np.array([MIN_VEL, MIN_VEL]), ub=np.array([MAX_VEL, MAX_VEL]), solver="osqp")  # osqp or clarabel or cvxopt
+    vel = solve_ls(R, s, G, h, lb=np.array([MIN_VEL, MIN_VEL]), ub=np.array([MAX_VEL, MAX_VEL]), solver="clarabel")  # osqp or clarabel or cvxopt
     return vel
 
 
